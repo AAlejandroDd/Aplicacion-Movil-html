@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Reservas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="css/MisReservas.css">
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <img class="imagen" src="img/finder.png" alt="Finder">
+
+      <nav>
+        <a href="Dashboard.html">Inicio</a>
+
+        <div class="dropdown">
+          <a>Reservas ⯆</a>
+          <div class="dropdown-content">
+             <a href="MisReservas.html">Mis Reservas</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a href="#">Servicios ⯆</a>
+          <div class="dropdown-content">
+            <a href="#">Restaurante</a>
+            <a href="#">Eventos</a>
+          </div>
+        </div>
+
+        <a href="#">Reseñas</a>
+        <a href="#">Perfil</a>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <img class="icon" src="img/Menu.png" alt="Menu">
+      </div>
+    </div>
+
+    <!-- Sidebar para móviles -->
+    <div id="sidebarMobile" class="sidebar-mobile">
+      <h1 style="text-align: center; color: white; font-family: Arial, Helvetica, sans-serif; font-size: 26.39px;">Menu</h1>
+      <div class="menu-item">
+        <a onclick="toggleSubmenu('reservasSubmenu')">Reservas ⯆</a>
+        <div id="reservasSubmenu" class="submenu">
+          <a href="MisReservas.html">Mis Reservas</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="#" onclick="toggleSubmenu('serviciosSubmenu')">Servicios ⯆</a>
+        <div id="serviciosSubmenu" class="submenu">
+          <a href="#">Restaurante</a>
+          <a href="#">Eventos</a>
+        </div>
+      </div>
+
+      <!-- Otros enlaces normales -->
+      <a href="Dashboard.html">Inicio</a>
+      <a href="#">Reseñas</a>
+      <a href="#">Perfil</a>
+    </div>
+
+
+  </header>
+
+  <main>
+    <div class="container-fluid flexbox tabla-scroll">
+    <table class="table" id="tabla">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha de entrada</th>
+      <th scope="col">Fecha de salida</th>
+      <th scope="col">numero de huespedes</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <!--Aquí van los registros que vienen en el JSON-->
+  </tbody>
+</table>
+</div>
+  </main>
+  <dialog id="mdEditar">
+    <article>
+        <header>
+            <a href="#" class="close" id="btnCerrarEditar"></a>
+            <h3>Editar Reserva</h3>
+        </header>
+        <form id="frmEditar">
+            <input type="hidden" id="txtIdEditar">
+            <input type="date" id="dFechaEntrada" placeholder="Fecha de Entrada" required>
+            <input type="date" id="dFechaSalida" placeholder="Fecha de Salida" required>
+            <input type="number" id="txtNumero" placeholder="Numero de huespedes" required>
+            <button type="submit" class="contrast">Actualizar Registro</button>
+        </form>
+    </article>
+  </dialog>
+  <footer class="container-fluid">
+    <h3>&copy; Derechos Reservados a Finder</h3>
+  </footer>
+    <script src="js/MisReservas.js"></script>
+
+</body>
+
+</html>

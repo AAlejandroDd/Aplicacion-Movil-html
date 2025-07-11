@@ -1,0 +1,55 @@
+/* SPLASH SCREEN - Mobile First */
+body.splash {
+  margin: 0;
+  padding: 0;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 90%;
+  margin: auto;
+}
+
+.marca {
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.boton {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.9rem 2.2rem;
+  background: #ffffffcc;
+  color: #000;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+  .overlay {
+    max-width: 400px;
+    padding: 3rem;
+  }
+
+  .marca {
+    font-size: 2.2rem;
+  }
+
+  .boton {
+    font-size: 1.1rem;
+  }
+}

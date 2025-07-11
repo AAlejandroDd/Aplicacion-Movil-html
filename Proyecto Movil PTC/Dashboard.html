@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="css/Dashboard.css">
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <img class="imagen" src="img/finder.png" alt="Finder">
+
+      <nav>
+        <a href="Dashboard.html">Inicio</a>
+
+        <div class="dropdown">
+          <a>Reservas ⯆</a>
+          <div class="dropdown-content">
+             <a href="MisReservas.html">Mis Reservas</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a href="#">Servicios ⯆</a>
+          <div class="dropdown-content">
+            <a href="#">Restaurante</a>
+            <a href="#">Eventos</a>
+          </div>
+        </div>
+
+        <a href="#">Reseñas</a>
+        <a href="#">Perfil</a>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <img class="icon" src="img/Menu.png" alt="Menu">
+      </div>
+    </div>
+
+    <!-- Sidebar para móviles -->
+    <div id="sidebarMobile" class="sidebar-mobile">
+      <h1 style="text-align: center; color: white;"><b>Menu</b></h1>
+      <div class="menu-item">
+        <a style="color: white;" onclick="toggleSubmenu('reservasSubmenu')">Reservas ⯆</a>
+        <div id="reservasSubmenu" class="submenu">
+          <a href="MisReservas.html">Mis Reservas</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="#" onclick="toggleSubmenu('serviciosSubmenu')">Servicios ⯆</a>
+        <div id="serviciosSubmenu" class="submenu">
+          <a href="#">Restaurante</a>
+          <a href="#">Eventos</a>
+        </div>
+      </div>
+
+      <!-- Otros enlaces normales -->
+      <a href="Dashboard.html">Inicio</a>
+      <a href="#">Reseñas</a>
+      <a href="#">Perfil</a>
+    </div>
+
+
+  </header>
+
+  <main>
+    <h1>Mira nuestras habitaciones</h1>
+    <div class="container-fluid flexbox">
+      <div class="card padding margin tarjeta" style="width: 19rem;">
+        <img
+          src="https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,g=auto,fit=scale-down/ki-cms-prod/images/8/5/4/6/266458-1-eng-GB/00a0bac2c61a-74157973_4K.jpg"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>Habitación Clásica Con 2 Camas Dobles</b></h5>
+          <p class="card-text">Habitación Para 4 personas de 30 metros cuadrados.</p>
+          <span class="textleft"><b>$100.00/noche</b></span>
+          <a class="btn btn-primary" onclick="openModal()">Reservar</a>
+        </div>
+      </div>
+      <div class="card padding margin tarjeta" style="width: 19rem;">
+        <img
+          src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-individual-catalonia-876x583.jpg"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>Habitación Clásica Con 1 Cama King</b></h5>
+          <p class="card-text">Habitación Para 1 o 2 personas con 30 metros cuadrados.</p>
+          <span class="textleft"><b>$50.00/noche</b></span>
+          <a class="btn btn-primary" onclick="openModal2()">Reservar</a>
+        </div>
+      </div>
+      <div class="card padding margin tarjeta" style="width: 19rem;">
+        <img src="https://images.mirai.com/INFOROOMS/100379228/I451Wt3YzM6hwuSzA3nc/I451Wt3YzM6hwuSzA3nc_original.jpg"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>Suite Junior 1 Cama King</b></h5>
+          <p class="card-text">Habitación para 1 o 2 personas con 60 metros cuadrados.</p>
+          <span class="textleft"><b>$150.00/noche</b></span>
+          <a class="btn btn-primary" onclick="openModal3()">Reservar</a>
+        </div>
+      </div>
+    </div>
+    <h1>Ubicación de nuestro Hotel</h1>
+    <div class="map-container borde">
+      <iframe src="https://maps.google.com/?ll=13.692940,-89.218191&z=12&t=m&output=embed" width="100%" height="450"
+        frameborder="0" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span id="btnCerrarModal" class="close" onclick="closeModal()">&times;</span>
+        <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+          <!-- Imagen del hotel -->
+          <img class="index"
+            src="https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,g=auto,fit=scale-down/ki-cms-prod/images/8/5/4/6/266458-1-eng-GB/00a0bac2c61a-74157973_4K.jpg"
+            class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+
+          <!-- Cuerpo de la tarjeta -->
+          <div class="card-body">
+
+            <!-- Cabecera flotante (parecida a card-header) -->
+            <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+              style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h5 class="card-title mb-0">Habitación Clásica Con 2 Camas Dobles</h5>
+                  <p class="card-subtitle text-muted">Habitación Para 4 personas de 30 metros cuadrados.</p>
+                </div>
+                <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                  $100.00 <small class="text-muted">/noche</small>
+                </p>
+              </div>
+            </div>
+
+            <!-- Características -->
+            <div class="row text-center mb-3 mt-3">
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🛏️</span>
+                <small>2 Camas</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🍽️</span>
+                <small>Desayuno</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>❄️</span>
+                <small>AC</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🏊‍♂️</span>
+                <small>Piscina</small>
+              </div>
+            </div>
+
+            <!-- Formulario de reserva -->
+            <form id="frmReservar">
+              <div class="mb-2">
+                <label for="fechaInicio" class="form-label">📅 Fecha de entrada</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required>
+              </div>
+
+              <div class="mb-2">
+                <label for="fechaFin" class="form-label">📅 Fecha de salida</label>
+                <input type="date" id="fechaFin" name="fechaFin" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="guests" class="form-label">👥 Número de huéspedes</label>
+                <input type="number" id="guests" name="guests" class="form-control" min="1" max="9" value="2" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100" >Reservar</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="myModal2" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal2()">&times;</span>
+        <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+          <!-- Imagen del hotel -->
+          <img class="index"
+            src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-individual-catalonia-876x583.jpg"
+            class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+
+          <!-- Cuerpo de la tarjeta -->
+          <div class="card-body">
+
+            <!-- Cabecera flotante (parecida a card-header) -->
+            <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+              style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h5 class="card-title mb-0">Habitación Clásica Con 1 Cama King</h5>
+                  <p class="card-subtitle text-muted">Habitación Para 1 o 2 personas con 30 metros cuadrados.</p>
+                </div>
+                <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                  $50.00 <small class="text-muted">/noche</small>
+                </p>
+              </div>
+            </div>
+
+            <!-- Características -->
+            <div class="row text-center mb-3 mt-3">
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🛏️</span>
+                <small>1 cama</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🍽️</span>
+                <small>Desayuno</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>❄️</span>
+                <small>AC</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🏊‍♂️</span>
+                <small>Piscina</small>
+              </div>
+            </div>
+
+            <!-- Formulario de reserva -->
+            <form id="frmReservar2">
+              <div class="mb-2">
+                <label for="fechaInicio" class="form-label">📅 Fecha de entrada</label>
+                <input type="date" id="fechaInicio2" name="fechaInicio" class="form-control" required>
+              </div>
+
+              <div class="mb-2">
+                <label for="fechaFin" class="form-label">📅 Fecha de salida</label>
+                <input type="date" id="fechaFin2" name="fechaFin" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="guests" class="form-label">👥 Número de huéspedes</label>
+                <input type="number" id="guests2" name="guests" class="form-control" min="1" max="9" value="2" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Reservar</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="myModal3" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal3()">&times;</span>
+        <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+          <!-- Imagen del hotel -->
+          <img class="index"
+            src="https://images.mirai.com/INFOROOMS/100379228/I451Wt3YzM6hwuSzA3nc/I451Wt3YzM6hwuSzA3nc_original.jpg"
+            class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+
+          <!-- Cuerpo de la tarjeta -->
+          <div class="card-body">
+
+            <!-- Cabecera flotante (parecida a card-header) -->
+            <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+              style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h5 class="card-title mb-0">Suite Junior 1 Cama King</h5>
+                  <p class="card-subtitle text-muted">Habitación para 1 o 2 personas con 60 metros cuadrados.</p>
+                </div>
+                <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                  $150.00 <small class="text-muted">/noche</small>
+                </p>
+              </div>
+            </div>
+
+            <!-- Características -->
+            <div class="row text-center mb-3 mt-3">
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🛏️</span>
+                <small>1 cama</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🍽️</span>
+                <small>Desayuno</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>❄️</span>
+                <small>AC</small>
+              </div>
+              <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                <span>🏊‍♂️</span>
+                <small>Piscina</small>
+              </div>
+            </div>
+
+            <!-- Formulario de reserva -->
+            <form id="frmReservar3">
+              <div class="mb-2">
+                <label for="fechaInicio" class="form-label">📅 Fecha de entrada</label>
+                <input type="date" id="fechaInicio3" name="fechaInicio" class="form-control" required>
+              </div>
+
+              <div class="mb-2">
+                <label for="fechaFin" class="form-label">📅 Fecha de salida</label>
+                <input type="date" id="fechaFin3" name="fechaFin" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="guests" class="form-label">👥 Número de huéspedes</label>
+                <input type="number" id="guests3" name="guests" class="form-control" min="1" max="9" value="2" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Reservar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container-fluid">
+    <h3><b>&copy; Derechos Reservados a Finder</b></h3>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+    integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
+    crossorigin="anonymous"></script>
+  <script src="js/Dashboard.js"></script>
+</body>
+
+</html>
