@@ -4,22 +4,8 @@
   padding: 0;
 }
 
-.icon {
-  width: 32px;
-  height: 32px;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
 body {
   font-family: Arial, sans-serif;
-  padding-top: 60px;
 }
 
 .nav-container {
@@ -29,6 +15,7 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   position: relative; /* <- Importante para el menú desplegable */
+  background-color: #adcbe9;
 }
 
 .logo {
@@ -47,9 +34,6 @@ body {
   gap: 1rem;
 }
 
-.nav-links li {
-  list-style: none;
-}
 
 .hamburger {
   display: none;
@@ -69,7 +53,7 @@ body {
     position: absolute;
     top: 100%;
     right: 1rem;
-    background: var(--pico-background-color, white);
+    background-color: #adcbe9;
     border: 1px solid var(--pico-border-color, #ccc);
     flex-direction: column;
     align-items: flex-start;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@next/css/pico.min.css">
+     <link rel="stylesheet" href="css/MyPerfil.css">
+</head>
+<body>
+    <main class="container profile-container" id="perfil-container">
+    <button class="close-form" id="cerrar-perfil" aria-label="Cerrar perfil">❌</button>
+
+    <div class="profile-header">
+      <div class="profile-pic-wrapper">
+        <img id="profile-pic" src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png" alt="Foto de perfil" class="profile-pic">
+      </div>
+      <h4 class="name">Ana Camila Savaleta</h4>
+      <p class="contact">anacamilags@gmail.com | +01 234 567 89</p>
+    </div>
+
+    <div class="card-grid">
+      <section class="card"><strong>Notar información del perfil</strong><span>✅</span></section>
+      <section class="card"><strong>Notificaciones</strong><span>ON</span></section>
+      <section class="card"><strong>Idioma</strong><span>English</span></section>
+      <section class="card"><strong>Seguridad</strong><span>✔️</span></section>
+      <section class="card"><strong>Tema</strong><span id="theme">Light mode</span></section>
+      <section class="card"><strong>Ayuda & Soporte</strong></section>
+      <section class="card"><strong>Condiciones</strong></section>
+      <section class="card"><strong>Política de privacidad</strong></section>
+    </div>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <button class="close-modal" id="cerrar-modal">❌</button>
+      <h5>Foto de perfil</h5>
+      <button id="actualizar-foto">Actualizar foto</button>
+      <button id="eliminar-foto" class="secondary">Eliminar foto</button>
+    </div>
+  </div>
+
+  <input type="file" id="file-input" accept="image/*" hidden>
+</body>
+<script src="js/MyPerfil.js"></script>
+</html>

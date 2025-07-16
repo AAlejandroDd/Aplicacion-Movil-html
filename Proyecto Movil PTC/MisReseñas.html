@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas</title>
+    <link rel="stylesheet" href="css/reseñas.css">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+</head>
+<body>
+
+  <main class="container">
+    <section>
+      <h2 class="text-center">Resumen de la reseña</h2>
+      <img src="img/finder.png" alt="logo" style="height: 35px;">
+      <div class="grafico">
+        <canvas id="graficoCircular" width="160" height="160"></canvas>
+        <div class="puntuacion-media">
+          <span id="mediaPuntuacion">0.0</span>
+          <p>Muy bien</p>
+        </div>
+      </div>
+      <div class="detalle-calificaciones">
+        <span>Location: <strong id="locationScore">0.0</strong></span>
+        <span>Service: <strong id="serviceScore">0.0</strong></span>
+      </div>
+    </section>
+
+    <section>
+      <button id="abrirFormulario">+ Nueva Reseña</button>
+      <dialog id="modalResena">
+        <article class="pestaña">
+          <header>
+            <h3>Nueva Reseña</h3>
+            <button aria-label="Cerrar" rel="prev" id="cerrarModal">&times;</button>
+          </header>
+          <form id="formResena">
+            <input type="text" placeholder="Nombre" id="nombre" required>
+            <textarea placeholder="Comentario" id="comentario" required></textarea>
+            <input type="number" step="0.1" placeholder="Puntuación (1-5)" min="1" max="5" id="puntuacion" required>
+            <input type="number" step="0.1" placeholder="Location (1-5)" min="1" max="5" id="location" required>
+            <input type="number" step="0.1" placeholder="Service (1-5)" min="1" max="5" id="service" required>
+            <button type="submit">Agregar</button>
+          </form>
+        </article>
+      </dialog>
+    </section>
+
+    <section>
+      <div id="comentarios">
+        <!-- Comentarios aparecerán aquí -->
+      </div>
+    </section>
+  </main>
+
+
+  <script src="js/reseñas.js"></script>
+</body>
+</html>

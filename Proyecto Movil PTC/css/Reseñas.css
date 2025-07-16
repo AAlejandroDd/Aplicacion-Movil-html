@@ -1,0 +1,96 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f6f6f6;
+}
+
+.resenas {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.resumen h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.grafico {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: auto;
+}
+
+.puntuacion-media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.puntuacion-media span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.detalle-calificaciones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.nueva-resena h3 {
+  margin-top: 30px;
+  font-size: 1.2em;
+  color: #A259FF;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+form input,
+form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+form button {
+  background: #A259FF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.comentarios {
+  margin-top: 30px;
+}
+
+.comentario {
+  background: #f1f1f1;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.pestaña{
+    position: relative;
+}
+
+#cerrarModal {
+ margin-top: -25px;
+}
