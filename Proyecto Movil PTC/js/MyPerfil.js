@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
+
+
+
 const fileInput = document.getElementById('file-input');
 const profilePic = document.getElementById('profile-pic');
 const modal = document.getElementById('modal');
@@ -6,6 +18,7 @@ const actualizarFoto = document.getElementById('actualizar-foto');
 const eliminarFoto = document.getElementById('eliminar-foto');
 const cerrarPerfil = document.getElementById('cerrar-perfil');
 const perfilContainer = document.getElementById('perfil-container');
+
 
 // Mostrar modal al dar clic en la imagen
 profilePic.addEventListener('click', () => {
@@ -50,4 +63,4 @@ fileInput.addEventListener('change', () => {
 eliminarFoto.addEventListener('click', () => {
   profilePic.src = "https://cdn-icons-png.flaticon.com/512/2922/2922506.png";
   modal.style.display = 'none';
-});
+})});

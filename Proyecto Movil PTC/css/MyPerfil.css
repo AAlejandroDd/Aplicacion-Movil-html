@@ -1,8 +1,72 @@
 body {
-  margin: 0;
+  font-family: Arial, sans-serif;
+   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
 }
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative; /* <- Importante para el menú desplegable */
+  background-color: #adcbe9;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 30%;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: black;
+}
+
+/* Responsive: Mostrar hamburguesa y ocultar menú */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    background-color: #adcbe9;
+    border: 1px solid var(--pico-border-color, #ccc);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
 
 .profile-container {
   max-width: 600px;
