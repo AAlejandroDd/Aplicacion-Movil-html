@@ -1,7 +1,6 @@
 const form = document.getElementById('formResena');
 const comentariosDiv = document.getElementById('comentarios');
 const mediaPuntuacion = document.getElementById('mediaPuntuacion');
-const locationScore = document.getElementById('locationScore');
 const serviceScore = document.getElementById('serviceScore');
 const canvas = document.getElementById('graficoCircular');
 const ctx = canvas.getContext('2d');
@@ -9,6 +8,19 @@ const ctx = canvas.getContext('2d');
 const modal = document.getElementById('modalResena');
 const abrirFormularioBtn = document.getElementById('abrirFormulario');
 const cerrarModalBtn = document.getElementById('cerrarModal');
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
+});
+
 
 abrirFormularioBtn.addEventListener('click', () => {
   modal.showModal();
@@ -26,11 +38,10 @@ form.addEventListener('submit', e => {
   const nombre = document.getElementById('nombre').value.trim();
   const comentario = document.getElementById('comentario').value.trim();
   const puntuacion = parseFloat(document.getElementById('puntuacion').value);
-  const location = parseFloat(document.getElementById('location').value);
   const service = parseFloat(document.getElementById('service').value);
 
-  if (nombre && comentario && puntuacion && location && service) {
-    reseñas.push({ nombre, comentario, puntuacion, location, service });
+  if (nombre && comentario && puntuacion && service) {
+    reseñas.push({ nombre, comentario, puntuacion, service });
     mostrarReseñas();
     actualizarGrafico();
     form.reset();
@@ -53,15 +64,12 @@ function mostrarReseñas() {
 function actualizarGrafico() {
   const total = reseñas.length;
   const suma = reseñas.reduce((acc, r) => acc + r.puntuacion, 0);
-  const sumaLocation = reseñas.reduce((acc, r) => acc + r.location, 0);
   const sumaService = reseñas.reduce((acc, r) => acc + r.service, 0);
 
   const promedio = (suma / total).toFixed(1);
-  const promedioLoc = (sumaLocation / total).toFixed(1);
   const promedioServ = (sumaService / total).toFixed(1);
 
   mediaPuntuacion.textContent = promedio;
-  locationScore.textContent = promedioLoc;
   serviceScore.textContent = promedioServ;
 
   const angulo = (suma / (total * 5)) * 2 * Math.PI;
