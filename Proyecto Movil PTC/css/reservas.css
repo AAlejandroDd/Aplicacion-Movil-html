@@ -1,0 +1,333 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: relative; /* <- Importante para el menú desplegable */
+    background-color: #4CAF50;
+  }
+  
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .nav-item {
+    text-decoration: none;
+    color: #888;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    transition: color 0.2s;
+  }
+  
+  .nav-item i {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  
+  .nav-item.active {
+    color: #007bff;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo img {
+    width: 30%;
+    object-fit: contain;
+  }
+  
+  /* Estructura base del dropdown */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    min-width: 160px;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+  
+  .margen {
+    margin-bottom: 20px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .padding {
+    padding: 20px;
+    border: 2px solid tan;
+  }
+  
+  .tarjeta {
+    height: 450px;
+    max-width: 500px;
+  }
+  
+  .margin {
+    margin: 20px;
+  }
+  
+  .textleft {
+    margin-right: 10px;
+  }
+  
+  .borde {
+    border: 3px solid black;
+  }
+  
+  .flexbox {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  main h1 {
+    text-align: center;
+  }
+  
+  .map-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+    margin-bottom: 30px;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+  }
+  
+  
+  
+  /* Fondo gris oscuro del modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Contenido del modal */
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 95vh;
+  }
+  
+  /* Botón de cerrar (X) */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .index {
+    z-index: 999;
+    margin-bottom: 10px;
+  }
+  
+  
+  #reservaActiva {
+    background-color: #f8f9fa;
+    border-left: 5px solid #4CAF50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  #reservaActiva h4 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  #reservaActiva p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+  }
+  
+  #reservaActiva a.btn:hover {
+    background-color: #4CAF50;
+  }
+  
+  
+  .Historial-button{
+      position: fixed; /*El boton queda flotante, sobre el contenido*/
+      background-color:rgb(13, 139, 30);
+  
+      bottom: 30px; /*Separacion desde la derecha*/
+  
+      right: 40px; /*Separacion desde la derecha*/
+  
+      color: rgb(255, 255, 255); /*Color de icono*/
+  
+      border-radius:60% ; /*Para redondear El boton*/
+  
+      border: none; /*Removemos bordes por defecto*/
+  
+      width: 70px;
+      height: 70px;  /*Dimensiones para hacer simetrico el boton*/
+  
+      box-shadow: 0 4px 10px rgb(0,0,0, 0.5); /*Sombra del boton*/
+  
+      display: flex; /*Activamos flexbox*/
+  
+      justify-content: center; /*Alineacion horizontal*/
+  
+      align-items: center; /*Alineacion vertical*/
+  
+      z-index: 1001; /*Para que el boton siempre quede encima del resto de contenido*/
+  
+      transition: transform 0.4s; /*Duracion del efecto*/
+  }
+  
+  .Historial-button:hover{
+      transform: scale(1.5);
+  }
+  
+  /* Botón flotante */
+  .Historial-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    padding: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    color: white;
+    z-index: 999;
+    transition: background-color 0.3s ease;
+    margin-bottom: 50px;
+  }
+  
+  .Historial-button:hover {
+    background-color: #4CAF50;
+  }
+  
+  /* Modal */
+  .historial-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .historial-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  
+  .historial-close {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .historial-grid .card {
+    margin-bottom: 1rem;
+    border-left: 4px solid #4CAF50;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  
+  /* ----- Responsive (ya no necesaria esta parte de nav) ----- */
+  @media (max-width: 768px) {
+    .navbar nav {
+      display: none;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+  }
+  

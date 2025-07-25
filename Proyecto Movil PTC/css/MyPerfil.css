@@ -12,7 +12,7 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   position: relative; /* <- Importante para el menú desplegable */
-  background-color: #adcbe9;
+  background-color: #4CAF50;
 }
 
 .logo {
@@ -26,20 +26,44 @@ body {
   object-fit: contain;
 }
 
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #888;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  transition: color 0.2s;
+}
+
+.nav-item i {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.nav-item.active {
+  color: #007bff;
+}
+
 .nav-links {
   display: flex;
   gap: 1rem;
 }
-
-
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: black;
-}
-
 /* Responsive: Mostrar hamburguesa y ocultar menú */
 @media (max-width: 768px) {
   .hamburger {
@@ -50,7 +74,7 @@ body {
     position: absolute;
     top: 100%;
     right: 1rem;
-    background-color: #adcbe9;
+    background-color: #4CAF50;
     border: 1px solid var(--pico-border-color, #ccc);
     flex-direction: column;
     align-items: flex-start;

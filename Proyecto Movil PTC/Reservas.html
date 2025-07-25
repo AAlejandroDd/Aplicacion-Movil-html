@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="css/reservas.css">
+</head>
+<body>
+    <nav class="container-fluid nav-container">
+        <div class="logo">
+          <img src="img/finder3.png" alt="Logo" />
+        </div>
+      </nav>
+    
+      <nav class="mobile-nav">
+        <a href="Dashboard.html" class="nav-item active" data-tab="home">
+          <i class="fas fa-home"></i>
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+        </a>
+        <a href="MisReseñas.html" class="nav-item" data-tab="search">
+          <i class="fas fa-search"></i>
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></span>
+        </a>
+    
+        <a href="Reservas.html" class="nav-item" data-tab="reserva">
+          <i class="fas fa-user"></i>
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked-icon lucide-book-marked"><path d="M10 2v8l3-3 3 3V2"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></span>
+        </a>
+    
+        <a href="MyPerfil.html" class="nav-item" data-tab="profile">
+          <i class="fas fa-user"></i>
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        </a>
+      </nav>
+    
+      <div id="reservaActiva" class="card margin" style="display: none;">
+        <h4>Tu próxima reserva</h4>
+        <p><strong>Nombre:</strong> <span id="Nombre"></span></p>
+        <p><strong>Check-in:</strong> <span id="checkIn"></span></p>
+        <p><strong>Check-out:</strong> <span id="checkOut"></span></p>
+        <p><strong>Huéspedes:</strong> <span id="huespedes"></span></p>
+      </div>
+    
+      <main>
+        <h1>Mira nuestras habitaciones</h1>
+        <div class="container-fluid flexbox">
+          <div class="card padding margin tarjeta" style="width: 19rem;">
+            <img
+              src="https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,g=auto,fit=scale-down/ki-cms-prod/images/8/5/4/6/266458-1-eng-GB/00a0bac2c61a-74157973_4K.jpg"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>Habitación Clásica Con 2 Camas Dobles</b></h5>
+              <p class="card-text">Habitación Para 4 personas de 30 metros cuadrados.</p>
+              <span class="textleft"><b>$100.00/noche</b></span>
+              <button class="contrast" onclick="openModal()">Reservar</button>
+            </div>
+          </div>
+          <div class="card padding margin tarjeta" style="width: 19rem;">
+            <img
+              src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-individual-catalonia-876x583.jpg"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>Habitación Clásica Con 1 Cama King</b></h5>
+              <p class="card-text">Habitación Para 1 o 2 personas con 30 metros cuadrados.</p>
+              <span class="textleft"><b>$50.00/noche</b></span>
+              <button class="contrast" onclick="openModal2()">Reservar</button>
+            </div>
+          </div>
+          <div class="card padding margin tarjeta" style="width: 19rem;">
+            <img src="https://images.mirai.com/INFOROOMS/100379228/I451Wt3YzM6hwuSzA3nc/I451Wt3YzM6hwuSzA3nc_original.jpg"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>Suite Junior 1 Cama King</b></h5>
+              <p class="card-text">Habitación para 1 o 2 personas con 60 metros cuadrados.</p>
+              <span class="textleft"><b>$150.00/noche</b></span>
+              <button class="contrast" onclick="openModal3()">Reservar</button>
+            </div>
+          </div>
+        </div>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span id="btnCerrarModal" class="close" onclick="closeModal()">&times;</span>
+            <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+              <!-- Imagen del hotel -->
+              <img class="index"
+                src="https://storage.kempinski.com/cdn-cgi/image/w=1920,f=auto,g=auto,fit=scale-down/ki-cms-prod/images/8/5/4/6/266458-1-eng-GB/00a0bac2c61a-74157973_4K.jpg"
+                class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+    
+              <!-- Cuerpo de la tarjeta -->
+              <div class="card-body">
+    
+                <!-- Cabecera flotante (parecida a card-header) -->
+                <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+                  style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                      <hr>
+                      <h5 class="card-title mb-0">Habitación Clásica Con 2 Camas Dobles</h5>
+                      <p class="card-subtitle text-muted">Habitación Para 4 personas de 30 metros cuadrados.</p>
+                    </div>
+                    <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                      $100.00 <small class="text-muted">/noche</small>
+                    </p>
+                  </div>
+                </div>
+    
+                <!-- Características -->
+                <div class="row text-center mb-3 mt-3">
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed-icon lucide-bed"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg></span>
+                    <small>2 Camas</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cup-soda-icon lucide-cup-soda"><path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/></svg></span>
+                    <small>Desayuno</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-air-vent-icon lucide-air-vent"><path d="M18 17.5a2.5 2.5 0 1 1-4 2.03V12"/><path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 8h12"/><path d="M6.6 15.572A2 2 0 1 0 10 17v-5"/></svg></span>
+                    <small>AC</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-waves-icon lucide-waves"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span>
+                    <small>Piscina</small>
+                  </div>
+                </div>
+    
+                <!-- Formulario de reserva -->
+                <form id="frmReservar">
+                  <div class="mb-2">
+                    <label for="NombreCliente" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> Nombre: </label>
+                   <input type="text" id="nombreReserva1" name="nombre" class="form-control" required>
+                  </div>
+                    <label for="fechaInicio" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de entrada</label>
+                    <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-2">
+                    <label for="fechaFin" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de salida</label>
+                    <input type="date" id="fechaFin" name="fechaFin" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-3">
+                    <label for="guests" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg> Número de huéspedes</label>
+                    <input type="number" id="guests" name="guests" class="form-control" min="1" max="9" value="2" required>
+                  </div>
+    
+                  <button class="contrast">Contrast</button>
+                </form>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="myModal2" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal2()">&times;</span>
+            <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+              <!-- Imagen del hotel -->
+              <img class="index"
+                src="https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-individual-catalonia-876x583.jpg"
+                class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+    
+              <!-- Cuerpo de la tarjeta -->
+              <div class="card-body">
+    
+                <!-- Cabecera flotante (parecida a card-header) -->
+                <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+                  style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                      <hr>
+                      <h5 class="card-title mb-0">Habitación Clásica Con 1 Cama King</h5>
+                      <p class="card-subtitle text-muted">Habitación Para 1 o 2 personas con 30 metros cuadrados.</p>
+                    </div>
+                    <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                      $50.00 <small class="text-muted">/noche</small>
+                    </p>
+                  </div>
+                </div>
+    
+                <!-- Características -->
+                <div class="row text-center mb-3 mt-3">
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed-icon lucide-bed"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg></span>
+                    <small>1 cama</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cup-soda-icon lucide-cup-soda"><path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/></svg></span>
+                    <small>Desayuno</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-air-vent-icon lucide-air-vent"><path d="M18 17.5a2.5 2.5 0 1 1-4 2.03V12"/><path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 8h12"/><path d="M6.6 15.572A2 2 0 1 0 10 17v-5"/></svg></span>
+                    <small>AC</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-waves-icon lucide-waves"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span>
+                    <small>Piscina</small>
+                  </div>
+                </div>
+    
+                <!-- Formulario de reserva -->
+                <form id="frmReservar2">
+                  <div class="mb-2">
+                    <label for="NombreCliente" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> Nombre: </label>
+                    <input type="text" id="nombreReserva2" name="nombre" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-2">
+                    <label for="fechaInicio" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de entrada</label>
+                    <input type="date" id="fechaInicio2" name="fechaInicio" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-2">
+                    <label for="fechaFin" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de salida</label>
+                    <input type="date" id="fechaFin2" name="fechaFin" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-3">
+                    <label for="guests" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg> Número de huéspedes</label>
+                    <input type="number" id="guests2" name="guests" class="form-control" min="1" max="9" value="2" required>
+                  </div>
+    
+                  <button type="submit" class="btn btn-primary w-100">Reservar</button>
+                </form>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="myModal3" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal3()">&times;</span>
+            <div class="card mb-4 mx-auto w-100 mt-3" style="max-width: 400px; position: relative;">
+              <!-- Imagen del hotel -->
+              <img class="index"
+                src="https://images.mirai.com/INFOROOMS/100379228/I451Wt3YzM6hwuSzA3nc/I451Wt3YzM6hwuSzA3nc_original.jpg"
+                class="card-img-top rounded" alt="Imagen del hotel" style="object-fit: cover; border-radius: 1rem;">
+    
+              <!-- Cuerpo de la tarjeta -->
+              <div class="card-body">
+    
+                <!-- Cabecera flotante (parecida a card-header) -->
+                <div class="position-relative z-1 bg-white px-3 pt-3 pb-0"
+                  style="margin-top: -2rem; border-radius: 0 0 1rem 1rem;">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                      <hr>
+                      <h5 class="card-title mb-0">Suite Junior 1 Cama King</h5>
+                      <p class="card-subtitle text-muted">Habitación para 1 o 2 personas con 60 metros cuadrados.</p>
+                    </div>
+                    <p class="fw-bold text-end mb-0" style="margin-left: 10px;">
+                      $150.00 <small class="text-muted">/noche</small>
+                    </p>
+                  </div>
+                </div>
+    
+                <!-- Características -->
+                <div class="row text-center mb-3 mt-3">
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed-icon lucide-bed"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg></span>
+                    <small>1 cama</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cup-soda-icon lucide-cup-soda"><path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/></svg></span>
+                    <small>Desayuno</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-air-vent-icon lucide-air-vent"><path d="M18 17.5a2.5 2.5 0 1 1-4 2.03V12"/><path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 8h12"/><path d="M6.6 15.572A2 2 0 1 0 10 17v-5"/></svg></span>
+                    <small>AC</small>
+                  </div>
+                  <div class="col-3 d-flex flex-column align-items-center gap-1" style="font-size: 0.9rem;">
+                   <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-waves-icon lucide-waves"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span>
+                    <small>Piscina</small>
+                  </div>
+                </div>
+    
+                <!-- Formulario de reserva -->
+                <form id="frmReservar3">
+    
+                  <div class="mb-2">
+                    <label for="NombreCliente" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> Nombre: </label>
+                    <input type="text" id="nombreReserva3" name="nombre" class="form-control" required>
+                  </div>
+    
+    
+                  <div class="mb-2">
+                    <label for="fechaInicio" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de entrada</label>
+                    <input type="date" id="fechaInicio3" name="fechaInicio" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-2">
+                    <label for="fechaFin" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg> Fecha de salida</label>
+                    <input type="date" id="fechaFin3" name="fechaFin" class="form-control" required>
+                  </div>
+    
+                  <div class="mb-3">
+                    <label for="guests" class="form-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg> Número de huéspedes</label>
+                    <input type="number" id="guests3" name="guests" class="form-control" min="1" max="9" value="2" required>
+                  </div>
+    
+                  <button type="submit" class="btn btn-primary w-100">Reservar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+
+      <button class="Historial-button" id="btnHistorial" title="Ver Historial">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history-icon lucide-history"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+</button>
+
+    <div id="historialModal" class="historial-modal">
+  <div class="historial-content">
+    <span class="historial-close" id="cerrarHistorial">&times;</span>
+    <h4> Historial de Reservas</h4>
+    <div id="historialReservas" class="historial-grid"></div>
+  </div>
+</div>
+
+      <script src="js/reservas.js"></script>
+</body>
+</html>
