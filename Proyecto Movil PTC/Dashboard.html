@@ -10,11 +10,62 @@
 </head>
 
 <body>
+
   <nav class="container-fluid nav-container">
+  <div class="navbar-top">
     <div class="logo">
-      <img src="img/finder3.png" alt="Logo" />
+      <img src="img/finder3.png" alt="Logo">
     </div>
-  </nav>
+    <a href="MyPerfil.html" class="profile-icon" aria-label="Perfil">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-user-icon">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<main class="content">
+  <h2>Your next trips</h2>
+  <div class="card-grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1518684079434-c3b6590886f4?..." alt="Paris, France">
+      <div class="card-info">
+        <h3>Paris, France</h3>
+        <p>Starting from $1200</p>
+        <button class="reserve-btn">Reservar</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542662057-5b658d511855?..." alt="Bermuda Triangle">
+      <div class="card-info">
+        <h3>Bermuda Triangle</h3>
+        <p>Starting from $1800</p>
+        <button class="reserve-btn">Reservar</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="img/finder.png" alt="Waterfall Adventure">
+      <div class="card-info">
+        <h3>Waterfall Adventure</h3>
+        <p>Starting from $850</p>
+        <button class="reserve-btn">Reservar</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1522079031758-00a89d44e458?..." alt="Cityscape">
+      <div class="card-info">
+        <h3>Cityscape</h3>
+        <p>Starting from $950</p>
+        <button class="reserve-btn">Reservar</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
 
   <nav class="mobile-nav">
     <a href="Dashboard.html" class="nav-item active" data-tab="home">
@@ -29,11 +80,6 @@
     <a href="Reservas.html" class="nav-item" data-tab="reserva">
       <i class="fas fa-user"></i>
       <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-marked-icon lucide-book-marked"><path d="M10 2v8l3-3 3 3V2"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></span>
-    </a>
-
-    <a href="MyPerfil.html" class="nav-item" data-tab="profile">
-      <i class="fas fa-user"></i>
-      <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
     </a>
   </nav>
 
