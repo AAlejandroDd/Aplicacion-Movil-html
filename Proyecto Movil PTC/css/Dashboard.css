@@ -60,40 +60,96 @@ h2 {
   margin-bottom: 20px;
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+.card{
+  background:#fff;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
-.card {
-  background-color: var(--card-bg);
-  border-radius: 15%;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra para las tarjetas */
-  cursor: pointer;
-  height: 200px; /* Altura fija para las tarjetas */
+/* Media / Carrusel */
+.media{
+  position:relative;
+  width:100%;
+  aspect-ratio: 4/3;       /* mantiene proporción en móvil */
+  background:#e9eaef;
+  overflow:hidden;
+  touch-action:pan-y;
+  -webkit-user-select:none; user-select:none;
+}
+.slides{
+  height:100%;
+  display:flex;
+  transition:transform .35s ease;
+}
+.slides img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  flex:0 0 100%;
 }
 
-.card img {
+
+/* Controles carrusel */
+.ctrl{
+  position:absolute; inset:0;
+  display:flex; justify-content:space-between; align-items:center;
+  pointer-events:none;
+}
+.ctrl button{
+  pointer-events:auto;
+  width:40px; height:40px; border:none; border-radius:999px;
+  background:rgba(8, 126, 38, 0.9);
+  display:grid; place-items:center; margin:0 6px;
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
+}
+.ctrl svg{width:18px; height:18px}
+
+/* Dots */
+.dots{
+  position:absolute; left:0; right:0; bottom:10px;
+  display:flex; gap:6px; justify-content:center;
+}
+.dot{
+  width:6px; height:6px; border-radius:999px;
+  background:rgb(255 255 255 / .55);
+}
+.dot.active{width:18px; background:#ffffff}
+
+/* Texto */
+.content{padding:12px 14px 16px}
+.title{font-weight:800; font-size:16px}
+.meta,.date{color:var(--muted); font-size:14px; margin-top:2px}
+.price{margin-top:8px; font-weight:800}
+.price small{font-weight:600; color:#444}
+
+/* Botones accesibles al pulgar en pantallas pequeñas */
+@media (max-width:480px){
+  .fav, .ctrl button{width:42px; height:42px}
+}
+
+.btn-reservar {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #0d7004, #0d7004);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 90, 95, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.card-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #fff;
-  padding: 15px 10px 10px;
+.btn-reservar:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(255, 90, 95, 0.4);
+}
+
+.btn-reservar:hover {
+  background: linear-gradient(135deg, #ff2e63, #ff5a5f);
 }
 
 .mobile-nav {
@@ -133,22 +189,6 @@ h2 {
   width: 100%;
   height: 450px;
   border: 0;
-}
-
-/* ✅ BOTÓN RESERVAR (AGREGADO SIN TOCAR NADA MÁS) */
-.reserve-btn {
-  background-color: #00b894;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.reserve-btn:hover {
-  background-color: #019875;
 }
 
 .card-info {
