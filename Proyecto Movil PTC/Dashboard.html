@@ -57,7 +57,184 @@
         </div>
   </main>
 
+  <!-- Modal Reserva -->
+<div id="mf-reserva" class="mf-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mf-backdrop" data-mf-close></div>
+
+  <div class="mf-sheet">
+    <!-- Header -->
+    <header class="mf-header">
+      <button class="mf-back" type="button" aria-label="Volver" data-mf-prev hidden>←</button>
+      <h1 id="mf-title">Revisa y continúa</h1>
+      <button class="mf-close" type="button" aria-label="Cerrar" data-mf-close>×</button>
+    </header>
+
+    <!-- Formulario -->
+    <form id="mf-form" novalidate>
+      
+      <!-- Paso 1: Revisa -->
+<section class="mf-step mf-active" data-mf-step="1">
+  <div class="mf-card">
+    <div class="mf-card-row">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hotel-icon lucide-hotel"><path d="M10 22v-6.57"/><path d="M12 11h.01"/><path d="M12 7h.01"/><path d="M14 15.43V22"/><path d="M15 16a5 5 0 0 0-6 0"/><path d="M16 11h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M8 7h.01"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+      <div class="mf-card-col">
+        <h2 id="mf-room-title" class="mf-h2">Habitación</h2>
+        <div class="mf-subtle">⭐ Favorito entre huéspedes</div>
+      </div>
+    </div>
+
+    <hr class="mf-divider">
+
+    <!-- DETALLES VIAJE como botón -->
+    <div class="mf-row">
+      <div>
+        <div class="mf-label">Detalles del viaje</div>
+        <button id="mf-trip-btn" class="mf-trip-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
+          Selecciona fechas
+        </button>
+
+    <!-- Inputs ocultos que viajan en el submit -->
+    <input type="hidden" name="checkin" id="mf-checkin">
+    <input type="hidden" name="checkout" id="mf-checkout">
+
+    <hr class="mf-divider">
+
+    <div class="mf-row">
+      <div>
+        <div class="mf-label">Precio total</div>
+        <div id="mf-room-price" class="mf-text">$0.00</div>
+
+    <hr class="mf-divider">
+
+    <div>
+      <div class="mf-label">Cancelación gratuita</div>
+      <div class="mf-text">
+        Si cancelas antes de la fecha límite recibes reembolso total.
+        <a class="mf-link" href="#">Política completa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Panel de fechas dentro del modal -->
+<div id="mf-trip-panel" class="mf-trip-panel" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mf-trip-sheet">
+    <header class="mf-trip-header">
+      <h3>Fechas del viaje</h3>
+      <button class="mf-trip-close" type="button" aria-label="Cerrar">×</button>
+    </header>
+    <div class="mf-trip-body">
+      <label class="mf-field">
+        <span class="mf-label">Check-in</span>
+        <input type="date" id="mf-input-checkin">
+      </label>
+      <label class="mf-field">
+        <span class="mf-label">Check-out</span>
+        <input type="date" id="mf-input-checkout">
+      </label>
+      <p class="mf-trip-hint" id="mf-trip-hint"></p>
+    </div>
+    <footer class="mf-trip-footer">
+      <button id="mf-trip-save" class="mf-cta" type="button">Guardar fechas</button>
+    </footer>
+  </div>
+</div>
+
+
+      <!-- Paso 2: Método de pago -->
+      <section class="mf-step" data-mf-step="2">
+        <h2 class="mf-h1">Agrega un método de pago</h2>
+
+        <label class="mf-option">
+          <input type="radio" name="metodoPago" value="tarjeta" required>
+          <span class="mf-option-body">
+            <span class="mf-option-title">Tarjeta de crédito o débito</span>
+            <span class="mf-option-badges">VISA • MASTERCARD • AMEX • DISCOVER</span>
+          </span>
+          <span class="mf-radio"></span>
+        </label>
+
+      </section>
+
+      <!-- Paso 3: Datos de tarjeta -->
+      <section class="mf-step" data-mf-step="3">
+        <h2 class="mf-h1">Agrega los datos de la tarjeta</h2>
+
+        <label class="mf-field">
+          <input type="text" name="cardNumber" inputmode="numeric" placeholder="Número de tarjeta" required>
+        </label>
+
+        <div class="mf-grid2">
+          <label class="mf-field">
+            <input type="text" name="cardExp" inputmode="numeric" placeholder="Vencimiento MM/AA" required>
+          </label>
+          <label class="mf-field">
+            <input type="text" name="cardCvv" inputmode="numeric" placeholder="Código CVV" required>
+          </label>
+        </div>
+
+        <label class="mf-field">
+          <input type="text" name="postal" inputmode="numeric" placeholder="Código postal" required>
+        </label>
+
+        <label class="mf-field">
+          <select name="country" required>
+            <option value="">País/región</option>
+            <option value="SV">El Salvador</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="mf-step" data-mf-step="4">
+  <h2 class="mf-h1">Datos del huésped</h2>
+  <hr class="mf-divider">
+
+
+  <label class="mf-field">
+    <input type="text" name="nombreHuesped" placeholder="Nombre completo (a nombre de quién)" required>
+  </label>
+
+  <label class="mf-field">
+    <input type="tel" name="telefono" inputmode="tel" placeholder="Número de teléfono" required>
+  </label>
+
+  <label class="mf-field">
+    <input type="text" name="dui" inputmode="numeric" placeholder="DUI (00000000-0)" required>
+  </label>
+
+  <label class="mf-field">
+    <input type="email" name="email" autocomplete="email" placeholder="Correo electrónico" required>
+  </label>
+</section>
+
+      <!-- Footer -->
+      <footer class="mf-footer">
+        <div class="mf-progress">
+          <span class="mf-bar mf-active"></span>
+          <span class="mf-bar"></span>
+          <span class="mf-bar"></span>
+          <span class="mf-bar"></span>
+        </div>
+        <button id="mf-next" class="mf-cta" type="button">Siguiente</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
   <script src="js/Dashboard.js"></script>
+  
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "4PmIu95_alYkJpzjO",
+      });
+   })();
+</script>
+
 </body>
 
 </html>

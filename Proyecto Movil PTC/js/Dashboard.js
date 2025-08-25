@@ -32,10 +32,10 @@ const habitaciones = [
 ];
 
 const LOCAL_IMAGES = {
-  "habitacion individual": ["img/Habitacion1Pers.avif", "img/ind-2.jpg", "img/ind-3.jpg"],
-  "habitacion pareja":     ["img/Habitacion2Pers.avif", "img/par-2.jpg", "img/par-3.jpg"],
-  "habitacion familiar":   ["img/habitacionfamiliar.jpeg", "img/fam-2.jpg", "img/fam-3.jpg"],
-  "penthouse vip":         ["img/vip.avif", "img/vip-2.jpg", "img/vip-3.jpg"]
+  "habitacion individual": ["img/Habitacion1Pers.avif", "img/Habitacion1persImg2.avif", "img/ImgHabitacionPers1.avif"],
+  "habitacion pareja":     ["img/Habitacion2Pers.avif", "img/Habitacion2Personimg2.avif", "img/habitacionperson2img3.avif"],
+  "habitacion familiar":   ["img/habitacionfamiliar.jpeg", "img/HabitacionFamiliar2.avif", "img/bañoFamiliar.avif"],
+  "penthouse vip":         ["img/vip.avif", "img/CamaPentHouse.avif", "img/BAÑOVIP.avif"]
 };
 
 const LOCAL_FALLBACK = ["img/finder", "img/default-2.jpg", "img/default-3.jpg"];
@@ -184,3 +184,288 @@ async function loadFromAPI(){
 }
 /* ========= INIT ========= */
 loadFromAPI();
+
+
+(function(){
+
+  const qs  = (s, r=document) => r.querySelector(s);
+  const qsa = (s, r=document) => [...r.querySelectorAll(s)];
+
+  // ⇨ Configura tu endpoint que enviará el correo (SMTP/Email Service/Retool Workflow)
+  const SEND_EMAIL_URL = '/api/send-email'; // ← cámbialo por tu endpoint real
+
+  const mfModal = qs('#mf-reserva');
+  if(!mfModal) return;
+
+  const mfForm   = qs('#mf-form', mfModal);
+  const mfNext   = qs('#mf-next', mfModal);
+  const mfBack   = qs('[data-mf-prev]', mfModal);
+  const mfTitle  = qs('#mf-title', mfModal);
+  const mfSteps  = qsa('.mf-step', mfModal);
+  const mfBars   = qsa('.mf-progress .mf-bar', mfModal);
+
+  // Campo dinámico paso 1
+  const mfRoomTitle = qs('#mf-room-title', mfModal);
+  const mfRoomPrice = qs('#mf-room-price', mfModal);
+
+  // Fecha: botón, panel y campos
+  const mfTripBtn = qs('#mf-trip-btn', mfModal);
+  const panel     = qs('#mf-trip-panel');
+  const panelSheet= qs('.mf-trip-sheet', panel);
+  const panelClose= qs('.mf-trip-close', panel);
+  const inputIn   = qs('#mf-input-checkin', panel);
+  const inputOut  = qs('#mf-input-checkout', panel);
+  const hiddenIn  = qs('#mf-checkin', mfModal);
+  const hiddenOut = qs('#mf-checkout', mfModal);
+  const hintEl    = qs('#mf-trip-hint', panel);
+  const saveBtn   = qs('#mf-trip-save', panel);
+
+  let mfCurrent = 1;
+
+  // ===== Utils =====
+  const monthsEs = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  function fmtDateStr(iso){
+    if(!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    return `${String(d.getDate()).padStart(2,'0')} ${monthsEs[d.getMonth()]} ${d.getFullYear()}`;
+  }
+  function fmtRange(a,b){
+    if(!a || !b) return 'Selecciona fechas';
+    const da = new Date(a + 'T00:00:00');
+    const db = new Date(b + 'T00:00:00');
+    const sameMonth = da.getMonth()===db.getMonth() && da.getFullYear()===db.getFullYear();
+    const aTxt = `${da.getDate()}${sameMonth?'':` ${monthsEs[da.getMonth()]}`} `;
+    const bTxt = `${db.getDate()} ${monthsEs[db.getMonth()]} ${db.getFullYear()}`;
+    return `${aTxt}–${bTxt}`;
+  }
+  function nightsBetween(a,b){
+    const da = new Date(a + 'T00:00:00');
+    const db = new Date(b + 'T00:00:00');
+    return Math.max(0, Math.round((db - da) / 86400000));
+  }
+  function todayISO(){
+    const d = new Date();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return `${d.getFullYear()}-${m}-${day}`;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+  const duiRegex   = /^\d{8}-\d$/;          // formato SV típico
+  const telRegex   = /^[0-9()+\-\s]{7,20}$/;
+
+  // ===== Apertura / cierre modal =====
+  function mfOpen(data){
+    if(mfRoomTitle) mfRoomTitle.textContent = data?.title || 'Habitación';
+    if(mfRoomPrice){
+      const precio = (typeof fmtCurrency === 'function')
+        ? fmtCurrency(data?.price || 0)
+        : `$${Number(data?.price||0).toFixed(2)}`;
+      mfRoomPrice.textContent = precio;
+      // Guarda también en dataset para el email final
+      mfRoomPrice.dataset.numeric = String(data?.price || 0);
+    }
+    // Fechas por defecto: hoy y mañana
+    if(hiddenIn && hiddenOut && mfTripBtn){
+      const t = todayISO();
+      const tomorrow = new Date(t + 'T00:00:00'); tomorrow.setDate(tomorrow.getDate()+1);
+      const tmrISO = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth()+1).padStart(2,'0')}-${String(tomorrow.getDate()).padStart(2,'0')}`;
+      hiddenIn.value  = hiddenIn.value  || t;
+      hiddenOut.value = hiddenOut.value || tmrISO;
+      mfTripBtn.textContent = fmtRange(hiddenIn.value, hiddenOut.value);
+      mfTripBtn.setAttribute('aria-expanded','false');
+    }
+
+    mfModal.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden';
+    mfSetStep(1);
+  }
+  function mfClose(){
+    mfModal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+  }
+
+  // ===== Steps =====
+  function mfSetStep(n){
+    mfCurrent = Math.max(1, Math.min(n, mfSteps.length));
+    mfSteps.forEach(s => s.classList.remove('mf-active'));
+    mfSteps[mfCurrent-1].classList.add('mf-active');
+
+    mfBars.forEach((b,i)=> b.classList.toggle('mf-active', i < mfCurrent));
+    if(mfBack) mfBack.hidden = mfCurrent<=1;
+
+    if(mfTitle){
+      const titles = {
+        1: 'Revisa y continúa',
+        2: 'Agrega un método de pago',
+        3: 'Agrega los datos de la tarjeta',
+        4: 'Datos del huésped'
+      };
+      mfTitle.textContent = titles[mfCurrent] || 'Reserva';
+    }
+    if(mfNext) mfNext.textContent = (mfCurrent===mfSteps.length) ? 'Finalizar' : 'Siguiente';
+  }
+
+  function mfValidateStep(){
+    const active = qs('.mf-step.mf-active', mfModal);
+    if(!active) return true;
+
+    // Requeridos comunes
+    const reqs = qsa('input[required], select[required]', active);
+    for(const el of reqs){
+      if(el.type==='radio'){
+        const group = mfForm.querySelectorAll(`input[name="${el.name}"]`);
+        if(![...group].some(r=>r.checked)){ el.focus(); return false; }
+      } else if(!el.value.trim()){ el.focus(); return false; }
+    }
+
+    // Validaciones específicas
+    if(mfCurrent===1){
+      if(!hiddenIn.value || !hiddenOut.value) return false;
+      if(new Date(hiddenOut.value) <= new Date(hiddenIn.value)) return false;
+    }
+    if(mfCurrent===3){
+      // puedes agregar lógicas adicionales de tarjeta si te interesa (luhn, etc.)
+    }
+    if(mfCurrent===4){
+      const email = mfForm.elements['email']?.value?.trim() || '';
+      const tel   = mfForm.elements['telefono']?.value?.trim() || '';
+      const dui   = mfForm.elements['dui']?.value?.trim() || '';
+      if(!emailRegex.test(email)){ mfForm.elements['email'].focus(); return false; }
+      if(!telRegex.test(tel)){ mfForm.elements['telefono'].focus(); return false; }
+      if(!duiRegex.test(dui)){ mfForm.elements['dui'].focus(); return false; }
+    }
+    return true;
+  }
+
+  // ===== Eventos modal =====
+  qsa('[data-mf-close]', mfModal).forEach(el=>el.addEventListener('click', mfClose));
+  if(mfBack) mfBack.addEventListener('click', ()=>mfSetStep(mfCurrent-1));
+
+  if(mfNext){
+    mfNext.addEventListener('click', async ()=>{
+      if(!mfValidateStep()) return;
+      if(mfCurrent<mfSteps.length){
+        mfSetStep(mfCurrent+1);
+      } else {
+        // Construye payload final
+        const formData = Object.fromEntries(new FormData(mfForm).entries());
+        const payload = {
+          // Detalles habitación
+          habitacion: mfRoomTitle?.textContent?.trim() || '',
+          monto: Number(mfRoomPrice?.dataset?.numeric || 0),
+          montoFmt: mfRoomPrice?.textContent?.trim() || '',
+          // Fechas
+          checkin: formData.checkin || hiddenIn.value,
+          checkout: formData.checkout || hiddenOut.value,
+          noches: nightsBetween(formData.checkin || hiddenIn.value, formData.checkout || hiddenOut.value),
+          // Método de pago
+          metodoPago: formData.metodoPago || 'tarjeta',
+          // Tarjeta (no envíes CVV a tu backend si no es necesario)
+          cardLast4: (formData.cardNumber || '').replace(/\s+/g,'').slice(-4),
+          // Datos huésped
+          nombre: formData.nombreHuesped || '',
+          telefono: formData.telefono || '',
+          dui: formData.dui || '',
+          email: formData.email || ''
+        };
+
+       
+
+  try {
+
+    emailjs.init("4PmIu95_alYkJpzjO");
+
+  await emailjs.send("service_5bqzsp9", "template_hhqs5xw", {
+    email: payload.email,
+    nombre: payload.nombre,
+    telefono: payload.telefono,
+    dui: payload.dui,
+    habitacion: payload.habitacion,
+    checkin: fmtDateStr(payload.checkin),
+    checkout: fmtDateStr(payload.checkout),
+    noches: payload.noches,
+    monto: payload.montoFmt,
+    metodo_pago: payload.metodoPago.toUpperCase(),
+    ultimos_digitos: payload.cardLast4 || '****'
+  });
+  alert('¡Reserva finalizada! Te enviamos un correo con los detalles.');
+} catch (err) {
+  console.error('Error enviando correo con EmailJS:', err);
+  alert('Hubo un problema enviando el correo. Intenta de nuevo.');
+} finally {
+  mfClose();
+}
+      }
+    });
+  }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape' && mfModal.getAttribute('aria-hidden')==='false') mfClose();
+  });
+
+  // ===== Date panel =====
+  function openTripPanel(){
+    if(!panel) return;
+    const t = todayISO();
+    const minOut = (dISO)=> {
+      const d = new Date(dISO + 'T00:00:00'); d.setDate(d.getDate()+1);
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    };
+    const ci = hiddenIn.value || t;
+    const co = hiddenOut.value || minOut(ci);
+    inputIn.value  = ci;
+    inputOut.value = co;
+
+    inputIn.min = t;
+    inputOut.min = minOut(inputIn.value);
+
+    hintEl.textContent = nightsBetween(inputIn.value, inputOut.value) + ' noche(s)';
+    panel.setAttribute('aria-hidden','false');
+    mfTripBtn?.setAttribute('aria-expanded','true');
+  }
+  function closeTripPanel(){
+    panel.setAttribute('aria-hidden','true');
+    mfTripBtn?.setAttribute('aria-expanded','false');
+  }
+  mfTripBtn?.addEventListener('click', openTripPanel);
+  panelClose?.addEventListener('click', closeTripPanel);
+  panel.addEventListener('click', (e)=>{
+    if(!panelSheet.contains(e.target)) closeTripPanel();
+  });
+  inputIn?.addEventListener('change', ()=>{
+    const d = inputIn.value;
+    const nd = new Date(d + 'T00:00:00'); nd.setDate(nd.getDate()+1);
+    const minOut = `${nd.getFullYear()}-${String(nd.getMonth()+1).padStart(2,'0')}-${String(nd.getDate()).padStart(2,'0')}`;
+    inputOut.min = minOut;
+    if(!inputOut.value || inputOut.value <= inputOut.min) inputOut.value = inputOut.min;
+    hintEl.textContent = nightsBetween(inputIn.value, inputOut.value) + ' noche(s)';
+  });
+  inputOut?.addEventListener('change', ()=>{
+    if(inputIn.value && inputOut.value && inputOut.value <= inputIn.value){
+      const d = new Date(inputIn.value + 'T00:00:00'); d.setDate(d.getDate()+1);
+      inputOut.value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+    hintEl.textContent = nightsBetween(inputIn.value, inputOut.value) + ' noche(s)';
+  });
+  saveBtn?.addEventListener('click', ()=>{
+    if(!inputIn.value || !inputOut.value) return;
+    if(new Date(inputOut.value) <= new Date(inputIn.value)) return;
+    hiddenIn.value  = inputIn.value;
+    hiddenOut.value = inputOut.value;
+    if(mfTripBtn) mfTripBtn.textContent = fmtRange(hiddenIn.value, hiddenOut.value);
+    closeTripPanel();
+  });
+
+  // ===== Delegación para .btn-reservar dinámicos =====
+  if (typeof container !== 'undefined' && container){
+    container.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.btn-reservar');
+      if(!btn) return;
+      const card = e.target.closest('.card');
+      const title = card?.querySelector('.title')?.textContent?.trim() || '';
+      const priceText = card?.querySelector('.price')?.textContent || '';
+      const priceNum = parseFloat(priceText.replace(/[^\d.,]/g,'').replace(',', '.')) || 0;
+      mfOpen({ title, price: priceNum });
+    });
+  }
+})();
