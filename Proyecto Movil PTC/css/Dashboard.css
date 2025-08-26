@@ -230,7 +230,7 @@ h2 {
 .mf-thumb { width:72px; height:72px; object-fit:cover; border-radius:10px; }
 .mf-card-col { min-width:0; }
 .mf-h2 { margin:0; font-size:1rem; font-weight:700; }
-.mf-subtle { font-size:.85rem; color:#666; }
+.mf-subtle { font-size:.85rem; color:#444444; }
 .mf-divider { border:0; border-top:1px solid #eee; margin:.75rem 0; }
 .mf-row { display:flex; justify-content:space-between; align-items:center; }
 

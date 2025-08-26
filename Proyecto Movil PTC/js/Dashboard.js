@@ -388,10 +388,18 @@ loadFromAPI();
     metodo_pago: payload.metodoPago.toUpperCase(),
     ultimos_digitos: payload.cardLast4 || '****'
   });
-  alert('¡Reserva finalizada! Te enviamos un correo con los detalles.');
+  Swal.fire({
+  title: "Tu Reserva se realizo con exito!",
+  text: "Revisa tu correo electronico para ver mas detalles de la reserva!",
+  icon: "success"
+});
 } catch (err) {
   console.error('Error enviando correo con EmailJS:', err);
-  alert('Hubo un problema enviando el correo. Intenta de nuevo.');
+  Swal.fire({
+  title: "Hubo un error al realizar tu reserva",
+  text: "Intentalo de nuevo",
+  icon: "error"
+});
 } finally {
   mfClose();
 }
