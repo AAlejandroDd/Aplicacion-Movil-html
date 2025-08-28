@@ -34,7 +34,9 @@ async function obtenerHabitacionesDashboard(){
       };
     });
   }catch(err){
-    console.error("[Service] obtenerHabitacionesDashboard:", err);
+     Swal.fire({title:"Error", text:"Intenta de nuevo", icon:"error"});
+    }finally{
+      closeModal();
     return []; // fallback vacío
   }
 }
