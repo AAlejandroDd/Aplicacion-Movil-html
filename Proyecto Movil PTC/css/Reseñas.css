@@ -12,7 +12,7 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   position: relative; /* <- Importante para el menú desplegable */
-  background-color: #4CAF50;
+ background: linear-gradient(135deg, #386c3f 30%, #0c4805 70%);
 }
 
 .logo {
@@ -57,7 +57,7 @@ body {
 }
 
 .nav-item.active {
-  color: #007bff;
+  color: #1bb60d;
 }
 
 .resenas {

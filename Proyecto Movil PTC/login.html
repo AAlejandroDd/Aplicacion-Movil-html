@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
@@ -12,24 +12,23 @@
 <body>
   <div class="fondo">
     <div class="container">
-      <div class="imagen-superior">
+      <div class="formulario">
+              <div class="imagen-superior">
         <img src="img/finder3.png" alt="Imagen de bienvenida"/>
       </div>
-      <div class="formulario">
-        <h2>Iniciar Sesión</h2>
         <form id="frmLogin">
           <label for="email">Correo electrónico:</label>
           <input type="email" id="email" name="email" required />
 
           <label for="password">Contraseña:</label>
           <input type="password" id="password" name="password"  required />
-          <a href="#" class="enlace">Olvidastes tu contraseña</a>
+          <a href="recuperarContraseña.html" class="enlace"><b>Olvidastes tu contraseña</b></a>
 
           <button type="submit">Iniciar Sesión</button>
           <br>
           <br>
           <br>
-          <a href="#" class="enlace">¿Aún no tienes una cuenta? <b>Registrate</b></a>
+          <a href="registo.html" class="enlace">¿Aún no tienes una cuenta? <b>Registrate</b></a>
 
         </form>
       </div>

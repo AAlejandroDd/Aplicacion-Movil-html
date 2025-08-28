@@ -1,0 +1,130 @@
+/* Reset básico y configuración de la tipografía */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal del fondo con degradado */
+.fondo {
+  background: linear-gradient(135deg, #2b543d 30%, #5d678d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor central y logo */
+.container {
+  width: 90%;
+  max-width: 450px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  width: 150px;
+  height: auto;
+}
+
+/* Formulario de registro: unificado con el fondo */
+.register-form-container {
+  background-color: transparent; 
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-form-container h2 {
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Campos de entrada */
+.register-form-container label {
+  display: block;
+  text-align: left;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #fff;
+  width: 100%;
+}
+
+.register-form-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.register-form-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.register-form-container input:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Botón y enlaces */
+.register-form-container button {
+  background-color: #7b88af; 
+  color: white;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.register-form-container button:hover {
+  background-color: #636d8d;
+}
+
+.link-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.link-container a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.link-container a b {
+  color: #fff;
+  text-decoration: underline;
+}
