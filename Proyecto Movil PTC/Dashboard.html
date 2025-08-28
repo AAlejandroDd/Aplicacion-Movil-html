@@ -240,23 +240,12 @@
   </div>
 </div>
 
-  
-  <!-- EmailJS (SDK + init) -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-   (function(){
-      emailjs.init({
-        publicKey: "4PmIu95_alYkJpzjO",
-      });
-   })();
-</script>
-
-<!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({ publicKey: "4PmIu95_alYkJpzjO" });</script>
 
-<!-- Solo el controller: él importa service y view -->
 <script type="module">
-  import { initDashboardController } from "./js/controllers/dashboardController.js";
+  import { initDashboardController } from "./js/controllers/controllerDashboard.js";
   initDashboardController();
 </script>
 </body>
