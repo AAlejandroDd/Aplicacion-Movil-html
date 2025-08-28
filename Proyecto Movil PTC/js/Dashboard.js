@@ -1,35 +1,4 @@
-const API_URL = "https://retoolapi.dev/3nKoxQ/ApiMovi"
 
-const habitaciones = [
-  {
-    id: 1,
-    title: "Habitación Individual",
-    meta: "Cama individual, baño privado y escritorio de trabajo",
-    price: 50,
-    priceNote: "por noche"
-  },
-  {
-    id: 2,
-    title: "Habitación Pareja",
-    meta: "Cama matrimonial, vista al mar y balcón privado",
-    price: 80,
-    priceNote: "por noche"
-  },
-  {
-    id: 3,
-    title: "Habitación Familiar",
-    meta: "Dos camas dobles, sala de estar y baño amplio",
-    price: 120,
-    priceNote: "por noche"
-  },
-  {
-    id: 4,
-    title: "Penthouse VIP",
-    meta: "Suite de lujo con jacuzzi, terraza panorámica y minibar",
-    price: 250,
-    priceNote: "por noche"
-  }
-];
 
 const LOCAL_IMAGES = {
   "habitacion individual": ["img/Habitacion1Pers.avif", "img/Habitacion1persImg2.avif", "img/ImgHabitacionPers1.avif"],
@@ -38,7 +7,7 @@ const LOCAL_IMAGES = {
   "penthouse vip":         ["img/vip.avif", "img/CamaPentHouse.avif", "img/BAÑOVIP.avif"]
 };
 
-const LOCAL_FALLBACK = ["img/finder", "img/default-2.jpg", "img/default-3.jpg"];
+const LOCAL_FALLBACK = ["img/notfound.avif", "img/notfound.avif", "img/notfound.avif"];
 
 /* ========= HELPERS ========= */
 const $ = (sel, root=document) => root.querySelector(sel);
@@ -477,3 +446,6 @@ loadFromAPI();
     });
   }
 })();
+
+
+

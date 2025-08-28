@@ -48,16 +48,17 @@
     </a>
   </nav>
 
-  <main>
-    <h1>Ubicación de nuestro Hotel</h1>
-        <div class="map-container borde">
-          <iframe src="https://maps.google.com/?ll=13.692940,-89.218191&z=12&t=m&output=embed" width="100%" height="450"
-            frameborder="0" style="border:0;" allowfullscreen="" loading="lazy">
-          </iframe>
-        </div>
-  </main>
+ <section class="map-section">
+    <div class="map-card">
+      <h2><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg> Ubicación de nuestro Hotel</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.4188734787654!2d-89.237793!3d13.693062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63302ff889c5c5%3A0xcf157d983b46f169!2sBarcel%C3%B3%20San%20Salvador!5e0!3m2!1ses-419!2ssv!4v1756266204332!5m2!1ses-419!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <a href="https://www.google.com/maps/place/Barcel%C3%B3+San+Salvador/@13.693062,-89.237793,17z/data=!3m1!4b1!4m9!3m8!1s0x8f63302ff889c5c5:0xcf157d983b46f169!5m2!4m1!1i2!8m2!3d13.693062!4d-89.237793!16s%2Fg%2F122x82m7?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-directions">Cómo llegar</a>
+    </div>
+  </section>
 
-  <!-- Modal Reserva -->
+  <!-- Modal Reserva-->
 <div id="mf-reserva" class="mf-modal" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="mf-backdrop" data-mf-close></div>
 
@@ -207,6 +208,24 @@
   </label>
 </section>
 
+
+<!-- Modal de mas informacion -->
+<div id="roomModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-desc"></p>
+    <p id="modal-price"></p>
+
+    <!-- Sección reseñas -->
+    <div id="modal-reviews">
+      <h3>Reseñas ⭐</h3>
+      <ul id="reviews-list"></ul>
+    </div>
+  </div>
+</div>
+
+
       <!-- Footer -->
       <footer class="mf-footer">
         <div class="mf-progress">
@@ -233,5 +252,32 @@
    })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="module">
+  import { initDashboardController } from "./js/controllers/dashboardController.js";
+
+  // Esto arranca tu lógica: 
+  // llama al service, obtiene las habitaciones y manda a pintar la vista.
+  initDashboardController();
+</script>
+
+<script type="module">
+  import { obtenerHabitacionesDashboard } from "./js/services/servicesDashboard.js";
+
+  async function init(){
+    const data = await obtenerHabitacionesDashboard();
+    const container = document.querySelector("#listings");
+
+    container.innerHTML = data.map(h => `
+      <div class="card">
+        <h3>${h.title}</h3>
+        <p>${h.meta}</p>
+        <p><strong>$${h.price}</strong> ${h.priceNote}</p>
+      </div>
+    `).join("");
+  }
+
+  init();
+</script>
 </body>
 </html>
