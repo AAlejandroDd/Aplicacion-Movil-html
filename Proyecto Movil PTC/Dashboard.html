@@ -240,44 +240,24 @@
   </div>
 </div>
 
-  <script src="js/Dashboard.js"></script>
-  <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
+  
+  <!-- EmailJS (SDK + init) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
    (function(){
       emailjs.init({
         publicKey: "4PmIu95_alYkJpzjO",
       });
    })();
 </script>
+
+<!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- Solo el controller: él importa service y view -->
 <script type="module">
   import { initDashboardController } from "./js/controllers/dashboardController.js";
-
-  // Esto arranca tu lógica: 
-  // llama al service, obtiene las habitaciones y manda a pintar la vista.
   initDashboardController();
-</script>
-
-<script type="module">
-  import { obtenerHabitacionesDashboard } from "./js/services/servicesDashboard.js";
-
-  async function init(){
-    const data = await obtenerHabitacionesDashboard();
-    const container = document.querySelector("#listings");
-
-    container.innerHTML = data.map(h => `
-      <div class="card">
-        <h3>${h.title}</h3>
-        <p>${h.meta}</p>
-        <p><strong>$${h.price}</strong> ${h.priceNote}</p>
-      </div>
-    `).join("");
-  }
-
-  init();
 </script>
 </body>
 </html>
