@@ -40,20 +40,132 @@
     </a>
   </nav>
 
-  <section class="reservas-container">
-    <h1>Mis Reservas</h1>
+ <h2>Tu Reserva</h2>
 
-    <div id="ultima-reserva" class="card destaque">
-      <h2>Última reserva activa</h2>
-      <div class="reserva-detalles"></div>
-    </div>
+      <!-- Loader (lo ocultas cuando cargues los datos) -->
+      <div class="skeleton" id="skeleton">
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+      </div>
 
-    <div id="historial-reservas">
-      <h2>Historial completo</h2>
-      <div class="lista-reservas"></div>
-    </div>
+      <!-- Detalles (tu controller quita hidden y rellena spans) -->
+      <div class="resumen" id="resumenReserva" hidden>
+        <div class="row">
+          <span class="label">ID:</span>
+          <span class="value" id="resId">—</span>
+        </div>
+        <div class="row">
+          <span class="label">Huésped:</span>
+          <span class="value" id="resNombre">—</span>
+        </div>
+        <div class="row">
+          <span class="label">Correo:</span>
+          <span class="value" id="resCorreo">—</span>
+        </div>
+        <div class="row">
+          <span class="label">Teléfono:</span>
+          <span class="value" id="resTelefono">—</span>
+        </div>
+        <div class="row">
+          <span class="label">Habitación:</span>
+          <span class="value" id="resHabitacion">—</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="box">
+            <span class="muted">Check-in</span>
+            <div class="big" id="resCheckin">—</div>
+          </div>
+          <div class="box">
+            <span class="muted">Check-out</span>
+            <div class="big" id="resCheckout">—</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <span class="label">Noches:</span>
+          <span class="value" id="resNoches">—</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Estado:</span>
+          <span class="value">
+            <span class="badge" id="resEstado">—</span>
+          </span>
+        </div>
+
+        <div class="acciones">
+          <button class="btn btn-primary" id="btnAbrirActualizar" disabled>Actualizar</button>
+          <button class="btn btn-danger" id="btnAbrirCancelar" disabled>Cancelar</button>
+        </div>
+
+        <p id="mensajeEstado" class="mensaje-estado" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Overlay para modales -->
+  <div class="overlay" id="overlay" hidden></div>
+
+  <!-- Modal: Actualizar (solo Check-in y Check-out) -->
+  <section class="modal" id="modalActualizar" aria-hidden="true" hidden>
+    <header class="modal-header">
+      <h3>Actualizar Fechas</h3>
+      <button class="icon-btn" id="closeActualizar" aria-label="Cerrar">&times;</button>
+    </header>
+
+    <form id="frmActualizarFechas" class="modal-body"
+          data-endpoint-actualizar="/api/reservas/actualizar">
+      <div class="grid-2">
+        <div>
+          <label for="nuevoCheckin">Nuevo Check-in</label>
+          <input type="date" id="nuevoCheckin" name="nuevoCheckin" required />
+        </div>
+        <div>
+          <label for="nuevoCheckout">Nuevo Check-out</label>
+          <input type="date" id="nuevoCheckout" name="nuevoCheckout" required />
+        </div>
+      </div>
+
+      <!-- Ocultos para que el controller pase contexto -->
+      <input type="hidden" id="hiddenIdReserva" name="idReserva" />
+      <input type="hidden" id="hiddenCorreo" name="correo" />
+
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-light" id="cancelActualizar">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="btnConfirmActualizar" disabled>Guardar cambios</button>
+      </footer>
+      <p class="mini" id="hintActualizar">* Solo se puede actualizar si faltan 10 días o más.</p>
+    </form>
   </section>
 
-      <script src="js/reservas.js"></script>
+  <!-- Modal: Confirmación de cancelación -->
+  <section class="modal" id="modalCancelar" aria-hidden="true" hidden>
+    <header class="modal-header">
+      <h3>Cancelar Reserva</h3>
+      <button class="icon-btn" id="closeCancelar" aria-label="Cerrar">&times;</button>
+    </header>
+
+    <div class="modal-body">
+      <p>¿Seguro que deseas <strong>cancelar</strong> tu reserva? Esta acción no se puede deshacer.</p>
+      <input type="hidden" id="hiddenIdReservaCancelar" />
+    </div>
+
+    <footer class="modal-footer">
+      <button type="button" class="btn btn-light" id="cancelCancelar">No, volver</button>
+      <button type="button" class="btn btn-danger" id="btnConfirmCancelar" disabled>Sí, cancelar</button>
+    </footer>
+    <p class="mini" id="hintCancelar">* Solo se puede cancelar si faltan 10 días o más.</p>
+  </section>
+
+     <script type="module">
+  import { initReservasController } from "./js/controllers/controllerReservas.js";
+  initReservasController();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
