@@ -2,7 +2,7 @@ import {
   consultarReservaDetallada,
   actualizarFechasDetalle,
   cancelarReserva,
-} from "../services/serviceReservas.js";
+} from "../services/servicesReservas.js";
 
 export function initReservasController() {
   const els = cacheEls();
